@@ -1,15 +1,15 @@
 const express = require("express");
 const path = require("path");
 const TelegramBot = require("node-telegram-bot-api");
-const TOKEN = "7194814929:AAGSIkVoB6AzQW7Oec_QxQxVycZBZRuqzn4"; // 1. токен
+const TOKEN = ''
 const server = express();
 const bot = new TelegramBot(TOKEN, {
     polling: true
 });
 const port = process.env.PORT || 5000;
-const gameName = "TestGame"; // 2. имя игры в телеге
+const gameName = "TestGame"; // 2. ГЁГ¬Гї ГЁГЈГ°Г» Гў ГІГҐГ«ГҐГЈГҐ
 const queries = {};
-server.use(express.static(path.join(__dirname, 'Match3 Sweet Sugar'))); // 3. Папка, где лежат файлы проекта
+server.use(express.static(path.join(__dirname, 'Match3 Sweet Sugar'))); // 3. ГЏГ ГЇГЄГ , ГЈГ¤ГҐ Г«ГҐГ¦Г ГІ ГґГ Г©Г«Г» ГЇГ°Г®ГҐГЄГІГ 
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want to play."));
 bot.onText(/start|game/, (msg) => bot.sendGame(msg.from.id, gameName));
 bot.on("callback_query", function (query) {
@@ -17,7 +17,7 @@ bot.on("callback_query", function (query) {
         bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
     } else {
         queries[query.id] = query;
-        let gameurl = "https://victoriais.github.io/TestSweetGame/"; // 4. Ссылка на hml страницу на гитхабе
+        let gameurl = "https://victoriais.github.io/TestSweetGame/"; // 4. Г‘Г±Г»Г«ГЄГ  Г­Г  hml Г±ГІГ°Г Г­ГЁГ¶Гі Г­Г  ГЈГЁГІГµГ ГЎГҐ
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl
